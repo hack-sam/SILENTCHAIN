@@ -44,6 +44,55 @@ This document contains performance benchmarks and security scan results for SILE
 
 ---
 
+### Test 2: Ollama gpt-oss:120b on Angular TestInvicti
+
+| | |
+|---|---|
+| **Product** | SILENTCHAIN AI Professional v1.3.21 |
+| **AI Provider** | Ollama |
+| **Model** | `gpt-oss:120b-cloud` |
+| **Target(s)** | angular.testinvicti.com |
+
+#### Performance
+| Metric | Value |
+|--------|-------|
+| Total Scan Time | 2h 6m |
+| AI Requests | 299 |
+| Avg Time/Request | 25.33s |
+| Total Tokens | 407,227 |
+| Avg Tokens/Request | 1,361 |
+
+#### Findings
+| Severity | Count |
+|----------|-------|
+| :red_circle: High | 10 |
+| :orange_circle: Medium | 80 |
+| :yellow_circle: Low | 170 |
+| 🔵 Info | 39 |
+| **Total** | **299** |
+| Verified (Phase 2) | 12 |
+
+#### Scan Coverage
+| Metric | Value |
+|--------|-------|
+| URLs Processed | 98 |
+| URLs Analyzed | 81 |
+| Skipped (Dup) | 56 |
+| Skipped (Low Conf) | 0 |
+| Errors | 0 |
+
+#### Phase 2 Telemetry
+| Metric | Value |
+|--------|-------|
+| Phase 2 Attempts | 15 |
+| Heuristic Matches | 204 |
+| AI Verification Calls | 204 |
+| AI Confirmed | 4 |
+| AI Rejected | 147 |
+| AI Response Parse Fails | 0 |
+
+---
+
 ## Benchmark History
 
 More benchmarks will be added here as additional models, providers, and target applications are tested.
