@@ -9,6 +9,11 @@
   - OpenAI API key
   - Anthropic (Claude) API key
   - Google (Gemini) API key
+  - [Claude Code](https://claude.ai/code) CLI — requires:
+    1. Install Claude Code: `npm install -g @anthropic-ai/claude-code`
+    2. Run `claude` once to authenticate (opens browser for Anthropic login)
+    3. Verify: `claude --version` should print a version number
+    4. The `claude` binary must be on your system `PATH`
 
 ## Step 1: Configure Jython in Burp Suite
 
@@ -34,7 +39,8 @@
    - OpenAI: `https://api.openai.com`
    - Claude: `https://api.anthropic.com`
    - Gemini: `https://generativelanguage.googleapis.com`
-5. Enter your API key (not required for Ollama).
+   - ClaudeCode: no URL needed (uses local `claude` CLI)
+5. Enter your API key (not required for Ollama or ClaudeCode).
 6. Select the model name.
 7. Click **Save**.
 

@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+_No unreleased changes._
+
+---
+
+## [1.2.0] - 2026-03-29
+
+### Added
+- **Azure Foundry AI Provider** — First-class Azure OpenAI support with deployment-based routing, configurable API version, and real connection testing (deployments list + chat endpoint fallback)
+- **Fixed Thread Pool (5 workers)** — Replaced unbounded `Thread` spawning with Java `Executors.newFixedThreadPool(5)` to prevent resource exhaustion under heavy traffic; per-host semaphores limit to 2 concurrent requests per target
+- **Persistent Vulnerability Cache** — Deduplication cache saved to `~/.silentchain_vuln_cache.json` with async write-behind; survives Burp restarts; tracks `hit_count` and `last_seen` per finding
+- **CSV Export** — "Export CSV" button exports all findings to timestamped CSV file (`SILENTCHAIN_Findings_YYYYMMDD_HHMMSS.csv`) with proper field escaping
+- **Config Versioning & Migration** — `config_version` field with automatic migration logic; v1→v2 adds Azure Foundry fields and fixes legacy theme values
+- **Start/Stop Scanning Toggle** — Master on/off button in control panel; stops both passive scanning and HTTP listener processing when deactivated
+- **Runtime Status Panel** — Live display of current AI provider, model, scanning state, and cache entry count; updates every refresh cycle
+- **Cache Hit Stats** — New "Cache Hits" counter in statistics panel tracking reused findings from persistent cache
+
+### Changed
+- **MD5 → SHA-256** — All request signature and finding deduplication hashes migrated from MD5 to SHA-256 (truncated to 32 chars) for improved collision resistance
+- **Real Claude Connection Test** — Claude provider now performs actual API call (`POST /messages` with ping) instead of hardcoded success; reports HTTP 401 for invalid keys
+- **Reduced Rate Limit Delay** — Default `min_delay` reduced from 4.0s to 2.0s since the fixed thread pool now manages concurrency
+- **Global Semaphore** — Increased from 1 to 5 to match thread pool size
+
+### Technical Details
+- Thread pool: `java.util.concurrent.Executors.newFixedThreadPool(5)` with `_make_runnable()` Java Runnable wrapper
+- Per-host semaphores: `threading.Semaphore(2)` per unique host, managed via `host_semaphores` dict
+- Cache persistence: JSON format with `entries` dict, `version`, `saved_at`; async save via `_async_save_cache()`
+- Azure Foundry: `api-key` header auth, URL format `{endpoint}/openai/deployments/{model}/chat/completions?api-version={version}`
+- Config migration: `_migrate_config()` handles version upgrades; currently v1→v2
+
+---
+
 ## [1.1.4] - 2026-03-09
 
 ### Added

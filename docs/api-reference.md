@@ -42,5 +42,8 @@ The extension communicates with one configured AI provider:
 | OpenAI | `POST {api_url}/v1/chat/completions` | `Authorization: Bearer {key}` |
 | Claude | `POST {api_url}/v1/messages` | `x-api-key: {key}` |
 | Gemini | `POST {api_url}/v1beta/models/{model}:generateContent` | `?key={key}` |
+| ClaudeCode | Local CLI: `claude -p` | None (uses local auth) |
 
 All AI requests use the same structured prompt format requesting JSON output with OWASP classification, severity, confidence, and remediation details.
+
+The **ClaudeCode** provider invokes the locally installed `claude` CLI via subprocess rather than making HTTP requests. No API key or URL configuration is needed — the CLI handles authentication independently.

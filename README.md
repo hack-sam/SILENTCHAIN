@@ -75,6 +75,19 @@ Traditional security scanners rely on predefined signatures and patterns. **SILE
 - Remediation recommendations
 - Direct links to security resources
 
+#### 🛡️ **Data Privacy (DataSanitizer)**
+- **Enabled by default** — automatically protects sensitive data before it leaves your machine
+- Bidirectional redaction: sensitive values are replaced with `[REDACTED_*]` placeholders before sending to cloud AI providers, then restored in the response
+- Detects and redacts:
+  - **API keys** — OpenAI (`sk-`), GitHub (`ghp_`), AWS (`AKIA`), GitLab (`glpat-`), Slack (`xoxb-`)
+  - **Authorization headers** — Bearer tokens, Basic auth
+  - **Credentials** — password/secret/token fields, `user:pass@host` URIs
+  - **Session cookies** — session IDs, CSRF tokens, JWTs, auth tokens
+  - **Email addresses**
+  - **IP addresses & hostnames** — target infrastructure details
+- Skipped entirely for **Ollama** (local-only, no data leaves your machine)
+- Can be toggled off in Settings for advanced users
+
 ### Vulnerability Detection
 
 SILENTCHAIN AI™ detects a wide range of security issues including:
@@ -430,20 +443,46 @@ PortSwigger Ltd. is granted explicit permission to redistribute, host, and bundl
 
 **Do not use this software for unauthorized access or activities outside systems you own or have explicit permission to test.**
 
-### Data Handling
+### Data Handling and Third-Party AI Disclosure
 
-- **Local Processing**: SILENTCHAIN runs entirely within Burp Suite
-- **No Data Collection**: We don't collect or transmit usage data
-- **AI Provider Privacy**:
-   - **Ollama**: Completely local, no external communication
-   - **Cloud Providers**: Data sent to respective AI services (OpenAI, Claude, Gemini)
+> **See [PRIVACY.md](PRIVACY.md) for the full privacy notice**, including the per-provider data-residency table and your responsibilities when scanning sensitive targets.
 
-### Best Practices
+SILENTCHAIN analyzes HTTP requests and responses intercepted by Burp Suite. Depending on the AI provider you select, this data may be transmitted to third-party cloud services.
 
-1. **Use Ollama** for sensitive testing (100% local, private)
-2. **Review AI Provider Terms** before using cloud services
-3. **Never test production** without authorization
-4. **Sanitize Data** if sharing logs/findings
+#### Which providers see your data
+
+| Provider | Data Destination | Data Transmitted |
+|----------|-----------------|------------------|
+| **Ollama** | Local machine only | Nothing leaves your machine |
+| **OpenAI** | OpenAI, L.L.C. servers (`api.openai.com`) | HTTP request/response content from in-scope targets |
+| **Claude** | Anthropic, PBC servers (`api.anthropic.com`) | HTTP request/response content from in-scope targets |
+| **Gemini** | Google LLC servers (`generativelanguage.googleapis.com`) | HTTP request/response content from in-scope targets |
+| **Claude Code** | Anthropic, PBC (via local CLI) | HTTP request/response content from in-scope targets |
+
+When a cloud AI provider is selected, SILENTCHAIN sends the HTTP request method, URL, headers, body, and response data for each in-scope request to the provider's API for analysis. The built-in **DataSanitizer** (enabled by default) redacts API keys, credentials, session tokens, and other sensitive patterns before transmission, but it cannot guarantee removal of all sensitive data from request/response bodies.
+
+#### Regulated data restriction
+
+**Do not submit regulated data to cloud AI providers.** This includes:
+
+- **PHI** (Protected Health Information) under HIPAA
+- **PCI DSS** cardholder data (credit card numbers, CVVs, etc.)
+- **EU personal data** subject to GDPR (Art. 13 requires disclosure of sub-processors)
+- **CCPA-covered personal information** (Cal. Civ. Code 1798.100 et seq.)
+
+If your target application processes any of the above data categories, you **must** use a local AI provider (Ollama) or ensure you have appropriate data processing agreements with the cloud provider and legal authorization to transmit such data.
+
+#### No telemetry
+
+SILENTCHAIN itself does not collect, store, or transmit any usage data, telemetry, or analytics. All data flows are directly between your Burp Suite instance and your selected AI provider.
+
+#### Best practices
+
+1. **Use Ollama** for sensitive or regulated environments (100% local, private)
+2. **Enable DataSanitizer** (on by default) when using cloud providers
+3. **Review your AI provider's data retention and privacy policies** before use
+4. **Never test production systems** without authorization
+5. **Sanitize findings and logs** before sharing externally
 
 ---
 
@@ -459,7 +498,7 @@ PortSwigger Ltd. is granted explicit permission to redistribute, host, and bundl
 
 - ⭐ **Star** this repository
 - 👁️ **Watch** for updates
-- 🐦 **Twitter**: [@SilentChainAI](https://twitter.com/SilentChainAI)
+- 🐦 **X (Twitter)**: [@silentchainai](https://x.com/silentchainai)
 
 ---
 
@@ -482,6 +521,10 @@ Inspired by the security community's dedication to making the web safer.
 ## ™️ Trademark Notice
 
 "SILENTCHAIN AI™", "SILENTCHAIN™", and the SILENTCHAIN AI logo are trademarks of SN1PERSECURITY LLC. Unauthorized use is prohibited.
+
+## Legal Notices
+
+See [NOTICE](NOTICE) for third-party trademark attributions.
 
 ---
 

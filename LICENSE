@@ -7,7 +7,7 @@ This license governs the use of SILENTCHAIN AI™ Community Edition ("Software")
 1. GRANT OF LICENSE
 SN1PERSECURITY LLC ("Licensor") grants you a limited, non-exclusive, non-transferable, revocable license to:
 - Use the Software for personal, educational, research, and internal commercial security testing purposes.
-- Run the Software within PortSwigger Burp Suite or compatible tools.
+- Run the Software within Burp Suite or compatible security testing tools.
 
 This license does not grant ownership of the Software.
 
@@ -22,15 +22,8 @@ You may NOT:
 3. SOURCE CODE AVAILABILITY
 The source code is provided for transparency and security review only. Access to source code does not grant rights to copy, modify, or redistribute except as explicitly permitted in this license.
 
-4. PORTSWIGGER / BURP SUITE DISTRIBUTION EXCEPTION
-Notwithstanding the restrictions above, SN1PERSECURITY LLC grants PortSwigger Ltd. a perpetual, royalty-free right to:
-- Redistribute the Software via the Burp Suite BApp Store.
-- Host and provide downloads of the Software on PortSwigger-controlled platforms.
-- Bundle the Software with Burp Suite or related PortSwigger products.
-
-PortSwigger Ltd. may distribute the Software free of charge to end users, provided that attribution to SN1PERSECURITY LLC is maintained. This permission does not grant PortSwigger Ltd. the right to modify, sublicense, or sell the Software beyond what is expressly stated here.
-
-No other third party is granted redistribution rights without prior written permission from SN1PERSECURITY LLC.
+4. THIRD-PARTY DISTRIBUTION
+No third party is granted redistribution rights without prior written permission from SN1PERSECURITY LLC.
 
 5. OWNERSHIP AND INTELLECTUAL PROPERTY
 The Software is licensed, not sold. SN1PERSECURITY LLC retains all right, title, and interest in and to the Software, including all copyrights, patents, and other intellectual property rights.
@@ -56,6 +49,19 @@ This license is automatically terminated if you violate any of its terms. Upon t
 12. COMMERCIAL AND PROFESSIONAL EDITIONS
 This license applies only to SILENTCHAIN AI™ Community Edition. SN1PERSECURITY LLC may offer paid or commercial editions under separate license terms. No rights to paid editions are granted under this license.
 
-13. CONTACT
+13. EXPORT CONTROL
+The Software is subject to the United States Export Administration Regulations (EAR), 15 C.F.R. Parts 730-774, administered by the Bureau of Industry and Security (BIS) of the U.S. Department of Commerce, and to sanctions programs administered by the U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC).
+
+Export Classification: The Software contains information security functionality, including AI-driven vulnerability detection, OWASP Top 10 classification, and integration with cryptographic libraries and TLS implementations for secure API communication. The Software may be classified under Export Control Classification Number (ECCN) 5D002 or 5D992. Use, export, re-export, transfer (in country), or release of the Software is subject to the license requirements and exceptions of the EAR. This classification is provided in good faith based on the Software's technical characteristics and is not a substitute for a formal commodity classification determination.
+
+Restricted Destinations and Parties: You may NOT export, re-export, transfer, provide access to, or otherwise make the Software available, directly or indirectly, to:
+- Any country, region, or territory subject to comprehensive U.S. trade sanctions or embargoes, which as of the effective date include Cuba, Iran, North Korea, Syria, and the Russian-occupied regions of Crimea, Donetsk, Luhansk, Kherson, and Zaporizhzhia of Ukraine (the "Restricted Territories"); the Restricted Territories list is subject to change by OFAC and BIS and you are responsible for consulting the then-current lists.
+- Any individual or entity on the U.S. Treasury Department's Specially Designated Nationals and Blocked Persons List (SDN List), the U.S. Department of Commerce Entity List, the Denied Persons List, the Unverified List, the Military End User (MEU) List, or any other U.S. government restricted-party list.
+- Any party where you know or have reason to know the Software will be used in connection with the design, development, production, stockpiling, or use of nuclear, chemical, or biological weapons; missile technology; or any other end-use prohibited by U.S. law or the EAR.
+- Any "military end user" or "military-intelligence end user" in a country listed in EAR Section 744.21 or Section 744.22 without the required BIS authorization.
+
+Compliance Obligation: You represent and warrant that (a) you are not located in, under the control of, or a national or resident of any Restricted Territory; (b) you are not listed on any U.S. government restricted-party list; and (c) your use, export, re-export, or transfer of the Software complies with all applicable U.S. and foreign export control, sanctions, customs, and anti-boycott laws and regulations. You are solely responsible for obtaining any export licenses, end-user statements, or other authorizations required for your use of the Software. This obligation survives termination of this license.
+
+14. CONTACT
 Commercial licensing, redistribution permissions, and enterprise agreements may be available upon request.
 Contact: support@sn1persecurity.com

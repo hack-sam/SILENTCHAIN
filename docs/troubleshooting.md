@@ -44,6 +44,16 @@ ollama list
 - Ensure your network allows outbound HTTPS connections
 - Check for rate limiting (wait and retry)
 
+## ClaudeCode Provider Not Working
+
+**Symptom:** Selecting "ClaudeCode" as the provider results in errors or no analysis.
+
+**Solutions:**
+- Verify the `claude` CLI is installed: run `claude --version` in a terminal
+- Ensure you have authenticated the CLI: run `claude` and complete the login flow
+- Check that the `claude` binary is on the system PATH visible to Burp Suite's Java process
+- If Burp was launched from a desktop shortcut, PATH may differ from your terminal — try launching Burp from the terminal instead
+
 ## No Findings Generated
 
 **Symptom:** Traffic flows through Burp but no findings appear in the SILENTCHAIN tab.

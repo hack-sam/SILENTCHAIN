@@ -8,7 +8,7 @@ All settings are configured via the in-extension Settings dialog within Burp Sui
 |---------|---------|-------------|
 | AI Provider | Ollama | Active provider: Ollama, OpenAI, Claude, Gemini, or ClaudeCode |
 | API URL | `http://localhost:11434` | Provider API endpoint |
-| API Key | (empty) | API key for cloud providers (not needed for Ollama) |
+| API Key | (empty) | API key for cloud providers (not needed for Ollama or ClaudeCode) |
 | Model | `llama3.1:8b` | Model name to use for analysis |
 
 ## Scan Settings

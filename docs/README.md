@@ -17,7 +17,7 @@ SILENTCHAIN Community is a Jython-based Burp Suite extension that provides AI-po
 
 - **Type:** Burp Suite Extension (passive scanner)
 - **Language:** Python 2.7 (Jython)
-- **AI Providers:** Ollama, OpenAI, Claude, Gemini
+- **AI Providers:** Ollama, OpenAI, Claude, Gemini, ClaudeCode (local CLI)
 - **Coverage:** OWASP Top 10 vulnerability categories
 
 ## Quick Start
