@@ -18,7 +18,7 @@ _No unreleased changes._
 ### Changed
 - **Rewritten as a native Java extension on the Burp Montoya API.** The Community Edition is
   no longer a single-file Jython/Python extension (`silentchain_ai_community.py`); it is now a
-  Gradle-built Java project packaged as `silentchain-community-edition-X.Y.Z.jar`. Install via
+  Gradle-built Java project packaged as `silentchain-community-edition-1.3.0.jar`. Install via
   **Extensions → Installed → Add → type: Java**.
 - **Default provider is now Burp AI** (in-process; Burp Suite Professional + AI subscription),
   with Ollama, OpenAI, Claude, Gemini, and Azure OpenAI/Foundry as alternatives.
