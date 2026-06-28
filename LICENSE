@@ -22,8 +22,15 @@ You may NOT:
 3. SOURCE CODE AVAILABILITY
 The source code is provided for transparency and security review only. Access to source code does not grant rights to copy, modify, or redistribute except as explicitly permitted in this license.
 
-4. THIRD-PARTY DISTRIBUTION
-No third party is granted redistribution rights without prior written permission from SN1PERSECURITY LLC.
+4. PORTSWIGGER / BURP SUITE DISTRIBUTION EXCEPTION
+Notwithstanding the restrictions above, SN1PERSECURITY LLC grants PortSwigger Ltd. a perpetual, royalty-free right to:
+- Redistribute the Software via the Burp Suite BApp Store.
+- Host and provide downloads of the Software on PortSwigger-controlled platforms.
+- Bundle the Software with Burp Suite or related PortSwigger products.
+
+PortSwigger Ltd. may distribute the Software free of charge to end users, provided that attribution to SN1PERSECURITY LLC is maintained. This permission does not grant PortSwigger Ltd. the right to modify, sublicense, or sell the Software beyond what is expressly stated here.
+
+No other third party is granted redistribution rights without prior written permission from SN1PERSECURITY LLC.
 
 5. OWNERSHIP AND INTELLECTUAL PROPERTY
 The Software is licensed, not sold. SN1PERSECURITY LLC retains all right, title, and interest in and to the Software, including all copyrights, patents, and other intellectual property rights.
