@@ -124,7 +124,7 @@ SILENTCHAIN AI™ detects a wide range of security issues including:
 ### Installation
 
 1. **Download the extension**
-   - Grab the latest `silentchain-community-edition-X.Y.Z.jar` from the [Releases](https://github.com/silentchainai/SILENTCHAIN/releases) page.
+   - Grab the latest **[`silentchain-community-edition.jar`](https://github.com/silentchainai/SILENTCHAIN/releases/latest/download/silentchain-community-edition.jar)** from GitHub Releases (this link always serves the newest build). Specific versions (`silentchain-community-edition-X.Y.Z.jar`) are on the [Releases](https://github.com/silentchainai/SILENTCHAIN/releases) page.
 
 2. **Load it in Burp Suite**
    - Go to **Extensions** → **Installed** → **Add**

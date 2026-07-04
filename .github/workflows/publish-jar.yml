@@ -1,0 +1,82 @@
+name: Publish Community jar
+
+# Builds the SILENTCHAIN Community fat-jar on the runner and publishes it to
+# GitHub Releases whenever a version tag (vX.Y.Z) is pushed:
+#   - a rolling 'latest' release      -> silentchain-community-edition.jar
+#   - the versioned vX.Y.Z release    -> silentchain-community-edition-X.Y.Z.jar
+# The jar is delivered ONLY through Releases; it is never committed to the repo.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write            # GITHUB_TOKEN: create/update releases + move the 'latest' tag
+
+concurrency:
+  group: publish-jar
+  cancel-in-progress: false
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'   # repo has no Gradle wrapper; pin a Gradle 8.x
+
+      - name: Build fat-jar
+        run: gradle shadowJar --no-daemon --console=plain
+
+      - name: Resolve version + verify build
+        run: |
+          set -euo pipefail
+          VER="$(grep -oP '^version\s*=\s*"\K[0-9]+\.[0-9]+\.[0-9]+' build.gradle.kts)"
+          [ -n "$VER" ] || { echo "::error::could not read version from build.gradle.kts"; exit 1; }
+          # The pushed tag must match the source version (release.sh keeps them in sync).
+          TAG="${GITHUB_REF_NAME#v}"
+          if [ "$TAG" != "$VER" ]; then
+            echo "::error::tag v$TAG does not match build.gradle.kts version $VER"; exit 1
+          fi
+          SRC="build/libs/silentchain-community-edition-${VER}.jar"
+          [ -f "$SRC" ] || { echo "::error::expected jar not found: $SRC"; exit 1; }
+          # Confirm the compiled manifest version matches too.
+          BUILT="$(unzip -p "$SRC" META-INF/MANIFEST.MF | grep -oP 'Implementation-Version: \K[0-9.]+' || true)"
+          if [ "$BUILT" != "$VER" ]; then
+            echo "::error::built jar manifest version '$BUILT' != '$VER'"; exit 1
+          fi
+          # Stable-named copy for the rolling asset (workspace only, not committed).
+          cp -f "$SRC" silentchain-community-edition.jar
+          echo "VER=$VER" >> "$GITHUB_ENV"
+          echo "Built and verified silentchain-community-edition-${VER}.jar"
+
+      - name: Publish rolling 'latest' release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: SILENTCHAIN Community - Latest
+          body: |
+            Rolling latest build of SILENTCHAIN Community Edition (v${{ env.VER }}).
+
+            Stable download:
+            https://github.com/${{ github.repository }}/releases/latest/download/silentchain-community-edition.jar
+          files: silentchain-community-edition.jar
+          make_latest: true
+
+      - name: Publish versioned release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}     # the pushed vX.Y.Z tag
+          name: SILENTCHAIN Community Edition ${{ github.ref_name }}
+          files: build/libs/silentchain-community-edition-${{ env.VER }}.jar

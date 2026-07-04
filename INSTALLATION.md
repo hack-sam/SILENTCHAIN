@@ -49,7 +49,13 @@ Complete step-by-step installation and setup guide for SILENTCHAIN AI™.
 
 #### Step 1: Download SILENTCHAIN
 
-Download the latest `silentchain-community-edition-X.Y.Z.jar` from the
+Download the latest build straight from GitHub Releases - it is always named
+**`silentchain-community-edition.jar`**:
+
+[**Download the latest release**](https://github.com/silentchainai/SILENTCHAIN/releases/latest/download/silentchain-community-edition.jar)
+
+That link always serves the newest release, so it never changes. Need a specific version? Grab
+`silentchain-community-edition-X.Y.Z.jar` from the
 [Releases](https://github.com/silentchainai/SILENTCHAIN/releases) page.
 
 #### Step 2: Load in Burp Suite
@@ -65,7 +71,7 @@ Download the latest `silentchain-community-edition-X.Y.Z.jar` from the
 3. **Configure Extension**
    - **Extension type**: Select `Java`
    - **Extension file**: Click `Select file...`
-   - Navigate to the downloaded `silentchain-community-edition-X.Y.Z.jar`
+   - Navigate to the downloaded `silentchain-community-edition.jar`
    - Click `Open`, then `Next`
 
 4. **Verify Loading**
